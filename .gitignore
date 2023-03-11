@@ -1,0 +1,28 @@
+# Build output
+bin/
+obj/
+.vs/
+
+# NuGet packages
+*.nupkg
+*.nuget.zip
+
+# Visual Studio
+*.suo
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+
+# .NET
+*.csproj.user
+
+# Resharper
+_ReSharper*/
+
+# JetBrains Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
