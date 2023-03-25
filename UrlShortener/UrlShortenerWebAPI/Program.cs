@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using UrlShortener.Core.Domain.RepositoryContracts;
 using UrlShortener.Core.ServiceContracts;
 using UrlShortener.Core.Services;
@@ -23,6 +24,9 @@ internal class Program
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
         IConfiguration configuration = blder.Build();
+
+        var multiplexer = ConnectionMultiplexer.Connect("localhost");
+        builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
 
         builder.Services.AddDbContext<UrlShortenerDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("ConnectionString")));
