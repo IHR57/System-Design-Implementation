@@ -1,0 +1,42 @@
+﻿@model ShortUrlModel
+
+<div class="container p-3 border border-light shadow-lg justify-content-center" style="width:50%">
+    <form asp-action="ShortUrl" asp-controller="Home" method="post">
+        <div class="row row-cols-1">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="LongUrl" class="pb-2">Enter a long URL to make a ShortUrl</label>
+                    <input asp-for="LongUrl" class="form-control" type="text" placeholder="Long Url"/>
+                    <span asp-validation-for="LongUrl" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12">
+                        <button style="width:100%" type="submit" class="mt-3 btn btn-primary">Shorten</button>
+                    </div>
+                </div>
+            </div>
+            @if(ViewData["ShortUrl"] != null)
+            {
+                <div class="col p-3">
+                    <div class="row row-cols-1">
+                        <div class="col pb-2">
+                            Generated Short Url
+                        </div>
+                        <div class="col">
+                            <input value="https://localhost:7193/@ViewData["ShortUrl"]" class="form-control" type="text" readonly/>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/custom-validation.js"></script>
+}
