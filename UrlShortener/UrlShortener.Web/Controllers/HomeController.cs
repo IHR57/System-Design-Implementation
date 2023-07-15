@@ -9,13 +9,11 @@ namespace ShortUrl.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IDatabase _redis;
         private readonly IUrlShortenerService urlShortenerService;
 
-        public HomeController(ILogger<HomeController> logger, IUrlShortenerService urlShortenerService, IConnectionMultiplexer multiplexer)
+        public HomeController(IUrlShortenerService urlShortenerService, IConnectionMultiplexer multiplexer)
         {
-            _logger = logger;
             this.urlShortenerService = urlShortenerService;
             this._redis = multiplexer.GetDatabase();
         }
